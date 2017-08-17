@@ -1,0 +1,38 @@
+<html>
+<head>
+  <title>kalkulator</title>
+ 
+</head>
+
+<body>
+ <input type="text" id="test"/>
+ <input type="button" onclick="test()"/>
+ 
+ <legend>alignment</legend>
+												<input type="radio"
+													id="radio0l" name="radio0" value="left">
+													<input type="radio"
+													id="radio0c" name="radio0" value="center">
+													<input type="radio"
+													id="radio0r" name="radio0" value="right">
+													
+ 
+ <script>
+ function test(){
+  var user_wpisal = document.getElementById("test").value;
+  alert(user_wpisal);
+  alert(isNaN(user_wpisal));
+  alert(new Number(user_wpisal));
+ 
+ var group = document.getElementsByName("radio0");
+var selected;
+
+for(var i = 0; i < group.length; i++) {
+   if(group[i].checked)
+       selected = group[i].value;
+ }
+ alert(selected);
+ }
+ </script>
+</body>
+</html>
