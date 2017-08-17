@@ -1,0 +1,49 @@
+<html>
+<head>
+<style>
+/**
+ * Define the space for each grid item by declaring the grid
+ * on the grid container.
+ */
+.grid {
+  
+  display: grid;
+  grid-template-columns:
+    /* 1 */ 200px 
+    /* 2 */ 200px
+            200px;
+ grid-template-rows: repeat(2, 200px 100px);
+ grid-auto-rows: 70px;
+ grid-gap:5px;/* nadpisane przez to co poniżej */
+ grid-column-gap: 10px;
+ grid-row-gap: 30px;
+ 
+}
+.grid div{
+background-color:red;
+border-radius: 15px;
+}
+
+</style>
+</head>
+<body>
+<div class="grid">
+  <div>1</div>
+ <div>2</div>
+ <div>3</div>
+ <div>4</div>
+ <div>5</div>
+ <div>6</div>
+ <div>7</div>
+ 
+</div>
+
+<div>8</div>
+<script>
+console.log("dupa");
+console.error("eeaa");
+console.debug("logging message");
+</script>
+
+</body>
+</html>

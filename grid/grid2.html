@@ -1,0 +1,99 @@
+<html>
+<head>
+<style>
+/**
+ * Define the space for each grid item by declaring the grid
+ * on the grid container.
+ */
+#grid {
+  /**
+   * Two columns:
+   *  1. the first sized to content,
+   *  2. the second receives the remaining space
+   *     (but is never smaller than the minimum size of the board
+   *     or the game controls, which occupy this column [Figure 3])
+   *
+   * Three rows:
+   *  3. the first sized to content,
+   *  4. the middle row receives the remaining space
+   *     (but is never smaller than the minimum height
+   *      of the board or stats areas)
+   *  5. the last sized to content.
+   */
+  display: grid;
+  grid-template-columns:
+    /* 1 */ auto
+    /* 2 */ 1fr;
+  grid-template-rows:
+    /* 3 */ auto
+    /* 4 */ 1fr
+    /* 5 */ auto;
+}
+
+/* Specify the position of each grid item using coordinates on
+ * the 'grid-row' and 'grid-column' properties of each grid item.
+ */
+#title    { grid-column: 1; grid-row: 1; background-color:red;}
+#score    { grid-column: 1; grid-row: 3; background-color:green;}
+#stats    { grid-column: 1; grid-row: 2; align-self: start; background-color:yellow;}
+#board    { grid-column: 2; grid-row: 1 / span 2; background-color:orange;}
+#controls { grid-column: 2; grid-row: 3; justify-self: center; background-color:blue;}
+
+
+
+.wrapper {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+  grid-auto-rows: minmax(100px, auto);
+}
+.one {
+  grid-column: 1 / 3;
+  grid-row: 1;
+}
+.two { 
+  grid-column: 2 / 4;
+  grid-row: 1 / 3;
+}
+.three {
+  grid-column: 1;
+  grid-row: 2 / 5;
+}
+.four {
+  grid-column: 3;
+  grid-row: 3;
+}
+.five {
+  grid-column: 2;
+  grid-row: 4;
+}
+.six {
+  grid-column: 3;
+  grid-row: 4;
+}
+</style>
+</head>
+<body>
+<div id="grid">
+  <div id="title">Game Title</div>
+  <div id="score">Score</div>
+  <div id="stats">Stats</div>
+  <div id="board">Board</div>
+  <div id="controls">Controls</div>
+</div>
+<div class="wrapper">
+  <div class="one">One</div>
+  <div class="two">Two</div>
+  <div class="three">Three</div>
+  <div class="four">Four</div>
+  <div class="five">Five</div>
+  <div class="six">Six</div>
+</div>
+<script>
+console.log("dupa");
+console.error("eeaa");
+console.debug("logging message");
+</script>
+
+</body>
+</html>
