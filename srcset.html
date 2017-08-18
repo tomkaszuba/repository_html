@@ -1,0 +1,20 @@
+<html>
+<head>
+  <title>kalkulator</title>
+ 
+</head>
+
+<body onload="alert(window.devicePixelRatio);">
+ <input type="text" id="test" placeholder="test"/>
+ <input type="button" onclick="test()"/>
+ 
+ <legend>alignment</legend>
+    <img src="./img/srcset_small.png" srcset="./img/srcset_small.png 300w, ./img/srcset_big.png 1000w" alt="obrazekq"/>
+    
+    <picture>
+    <source srcset="./img/srcset_big.png" media="(min-width: 665px)"/>
+    <source srcset="./img/srcset_small.png" media="(min-width: 465px)"/>
+    <img src="./img/srcset_xsmall.png" alt="ee"/>
+    </picture>
+</body>
+</html>

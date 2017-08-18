@@ -1,7 +1,7 @@
 <html>
 <head>
   <title>kalkulator</title>
- 
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
 </head>
 
 <body>
@@ -12,9 +12,15 @@
     <input type="radio" id="radio0l" name="radio0" value="left"/>
     <input type="radio" id="radio0c" name="radio0" value="center"/>
     <input type="radio"	id="radio0r" name="radio0" value="right"/>
-													
+		
+		<div id="wynik">wynik</div>
+		<hr/>
+		<div id="wynik1">wynik1</div>
+		
  
  <script>
+ 
+
  function test(){
   var user_wpisal = document.getElementById("test").value;
   alert(user_wpisal);
@@ -28,8 +34,11 @@ for(var i = 0; i < group.length; i++) {
    if(group[i].checked)
        selected = group[i].value;
  }
- alert(selected);
+ $("#wynik").prepend("<br>"+selected);
+ $("#wynik1").append("<br>"+selected);
+ 
  }
+ 
  </script>
 </body>
 </html>

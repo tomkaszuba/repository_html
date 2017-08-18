@@ -1,0 +1,94 @@
+<html>
+<head>
+  <title>kalkulator</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>prawy klawisz ma stopImmediatePropagation i preventDefault</h1>
+ 		<div id="wynik">mouseenter</div>
+
+ 
+ <script>
+ var sampleArray = [0,0,7];
+
+ var test = {
+ "name": "abc",
+ "myarray":sampleArray, //nie trzyma referencji
+ "age2":[0,0,"eee"]
+ };
+ test.prawym = function(){
+ console.log(this);
+ }
+  //test.prawym();
+ 
+ 
+test.incrementLastArrayElement = function(_array) {
+    var newArray = [];
+    // Your code should make newArray equal to an array that has the same
+    // values as _array, but the last number has increased by one.
+    newArray=_array.slice(0); //od jednego to skróci tabele 
+    // For example:
+    // _array = [1, 2, 3];
+    // turns into:
+    // newArray = [1, 2, 4];
+   
+    newArray[newArray.length-1]=newArray[newArray.length-1]+1;
+    // Your code goes in here!
+   // newArray=_array;
+    console.log(_array);
+    
+    console.log(newArray);
+    
+    // Don't delete this line!
+    return newArray;
+};
+
+// Did your code work? The line below will tell you!
+//console.log(test.incrementLastArrayElement(sampleArray));
+
+
+
+ $(document).click(function(loc) {
+  console.log("lewym");
+   console.log(loc);
+   var iks = loc.clientX;//na stronie widocznej
+   var igrek = loc.clientY;
+   console.log(iks+", "+igrek+" "+loc.pageX+" "+loc.pageY); //pagex na stronie z przesunieciem
+   
+   
+   
+});
+ $(document).contextmenu( function(loc) {
+  loc.preventDefault();
+  event.stopImmediatePropagation();
+  console.log("prawym"); //pagex na stronie z przesunieciem
+   test.prawym();
+});
+$("#wynik").mouseenter(function () {
+
+   sampleArray= test.incrementLastArrayElement(sampleArray);
+
+});
+ function Car() {
+ //var test = "abc"
+  for(aa in test){
+  console.log(aa);
+    console.log(test[aa]);
+  }
+ }
+/*
+var Car = function() {}
+*/
+var car1 = new Car();
+
+console.log(test["name"]);
+console.log(test.age2);
+if("2" === 2){
+console.log("tosamo");
+}
+
+ 
+ </script>
+</body>
+</html>
