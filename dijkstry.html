@@ -1,0 +1,169 @@
+<html>
+<head>
+  <title>kalkulator</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<div>TABLICA:</div>
+ <a href="http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/DijkstraApp.shtml?demo1" target="_blank">http://weierstrass.is.tokushima-u.ac.jp/ikeda/suuri/dijkstra/DijkstraApp.shtml?demo1</a>
+<pre>
+var graph1 = {
+	vertex: ["A","B","C","D","E","F"],
+	edge: [
+	/* vertex1, vertex2, weight */
+		["A", "C", 13],
+		["A", "E", 16],
+		["A", "F", 8],
+		["B", "D", 6],
+		["B", "F", 10],
+		["C", "D", 14],
+		["C", "F", 11],
+		["D", "E", 5],
+		["D", "F", 17],
+		["E", "F", 7]
+	]
+};
+</pre>
+<input type="text" onclick="licz(this)"/>
+<HR/>
+<div id="wynik">WYNIK:</div>
+<HR/>
+<div id="log">LOG:</div>
+ 
+ <script>
+ 
+var graph2 = {
+	vertex: ["A","B","C"],
+	edge: [
+	/* vertex1, vertex2, weight */
+		["A", "B", 4],
+		["A", "C", 7],
+		["B", "C", 1]
+//		["B", "A", 4],
+//		["C", "A", 7],
+//		["C", "B", 1]
+	]
+};
+
+var graph1 = {
+	vertex: ["A","B","C","D","E","F"],
+	edge: [
+	/* vertex1, vertex2, weight */
+		["A", "C", 13],
+		["A", "E", 16],
+		["A", "F", 8],
+		["B", "D", 6],
+		["B", "F", 10],
+		["C", "D", 14],
+		["C", "F", 11],
+		["D", "E", 5],
+		["D", "F", 17],
+		["E", "F", 7]
+	]
+};
+
+function powiel_graf (edges){
+    var wynik = new Array();
+    for(var i=0; i<edges.length; i++){
+        wynik.push(edges[i]);
+        var tmp = [edges[i][1], edges[i][0], edges[i][2]];
+        wynik.push(tmp);
+    }
+    console.log(wynik);
+    return wynik;
+}
+
+graph1.edge = powiel_graf(graph1.edge);
+
+var wynik_koszt = {};
+var wynik_poprzednik = {};
+//var wynik_poprzednik1 = [];
+var wynik_gotowe = {};
+
+function licz(formularz){
+
+if(formularz.value.length!=1){
+    alert("wpisz wezeł");
+    return;
+}
+
+$("#log").empty();
+$("#wynik").empty();
+//init
+for(var i = 0; i<graph1.vertex.length; i++){
+    console.log(graph1.vertex[i]);
+    wynik_koszt[graph1.vertex[i]]=NaN;
+    wynik_gotowe[graph1.vertex[i]]=NaN;
+    wynik_poprzednik[graph1.vertex[i]] = null;
+}
+
+var node_aktualny = formularz.value;
+var koszt_do_aktualnego = 0;
+wynik_gotowe[node_aktualny]=0;
+wynik_koszt[node_aktualny]=0;
+wynik_poprzednik[node_aktualny]=node_aktualny;
+$("#log").append("<br/><span style='color:red'>"+"START--------------------------------"+"</span>");
+for(var i = 0; i<graph1.vertex.length-1; i++){
+    for(var j=0; j<graph1.edge.length; j++){
+        $("#log").append("<br/><span style='color:gray'>"+graph1.edge[j]+"</span>");
+        if(node_aktualny == graph1.edge[j][0]){
+             $("#log").append("<br/>"+"hit !! mam sciezke do "+graph1.edge[j][1] +" za "+graph1.edge[j][2]);
+             $("#log").append("<br/>"+"aktualnly wynik do tego wezla: "+wynik_koszt[graph1.edge[j][1]]);
+            //if(!isNaN(wynik_gotowe[graph1.edge[j][1]])){
+            if(isNaN(wynik_koszt[graph1.edge[j][1]])){
+                 $("#log").append("<br/>"+"NOWA SCIEZKA!");
+                wynik_koszt[graph1.edge[j][1]] = graph1.edge[j][2]+koszt_do_aktualnego;
+                 $("#log").append("<br/>"+"aktualnly wynik do tego wezla: "+wynik_koszt[graph1.edge[j][1]]);
+                wynik_poprzednik[graph1.edge[j][1]] = node_aktualny;
+            }else
+                
+                if(wynik_koszt[graph1.edge[j][1]] > graph1.edge[j][2]+koszt_do_aktualnego){
+                     $("#log").append("<br/>"+"aktualnly wynik do tego wezla: "+wynik_koszt[graph1.edge[j][1]]+" mam lepszy !"+ (graph1.edge[j][2]+koszt_do_aktualnego));
+                    wynik_koszt[graph1.edge[j][1]] = graph1.edge[j][2]+koszt_do_aktualnego;
+                    wynik_poprzednik[graph1.edge[j][1]]=node_aktualny;
+                }
+        }
+        
+    }
+ $("#log").append("<br/><span style='color:red'>"+"Wyznaczam min na tą runde--------------------------------"+"</span>");
+var min = NaN;
+for(var key in wynik_koszt){
+    if(wynik_koszt.hasOwnProperty(key)){
+         $("#log").append("<br/>"+"biore "+ key+" czy zrobiony?="+ wynik_gotowe[key]+ " koszt aktualny "+wynik_koszt[key]);
+        if(isNaN(min) && isNaN(wynik_gotowe[key])){ // nie jest zrobiony i min jest nieustawiony
+            min = wynik_koszt[key];
+            node_aktualny = key;        
+        }else if(min>wynik_koszt[key] && isNaN(wynik_gotowe[key])){ // nie jest zrobiony i jest lepszy od min
+            min = wynik_koszt[key];
+            node_aktualny = key;
+        }
+    
+    }
+    
+}
+    koszt_do_aktualnego = min;
+    wynik_gotowe[node_aktualny]=koszt_do_aktualnego;
+
+     $("#log").append("<br/>"+"w tym obrocie znaleźliśmy ścieżkę do "+node_aktualny +" za "+koszt_do_aktualnego);
+    
+console.log(wynik_koszt);
+console.log(wynik_poprzednik);
+console.log(wynik_gotowe);
+ $("#log").append("<br><span style='color:red'>"+"--------------------------------"+"</span>");
+    
+}
+ var tabelka = "<table border='1'>";
+ tabelka+="<tr><td>"+"WEZEL"+"</td><td>"+"KOSZT"+"</td><td>"+"POPRZEDNIK"+"</td></tr>";
+
+for(var key in wynik_gotowe){
+if(wynik_koszt.hasOwnProperty(key)){
+  tabelka+="<tr><td>"+key+"</td><td>"+wynik_gotowe[key]+"</td><td>"+wynik_poprzednik[key]+"</td></tr>";
+ }
+}
+ tabelka+="</table>";
+ $("#wynik").append(tabelka);
+}
+ </script>
+</body>
+</html>
