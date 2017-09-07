@@ -1,0 +1,129 @@
+<html>
+<head>
+  <title>clicker</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+
+
+<select class="form-control" id="catselector"  onchange="controller.changeCat(this)">
+
+</select>
+
+<div>
+
+<h1>my-elem</h1>
+<p id="cat0counter">0</p>
+ <img id="my-elem0" src="./img/srcset_small.png"/>
+</div>
+
+
+<div>
+
+<h1>my-elem1</h1>
+<p id="cat1counter" >0</p>
+ <img id="my-elem1" src="./img/srcset_small.png"/>
+</div>
+
+ <script>
+ var cats = []; //model
+ //var cat_counter =[];
+ //var cat_names =[];
+
+ var controller = {
+ selected : 0,
+ start:  function(ile){
+ for(var i=0; i<ile; i++){
+ var opcje = document.getElementById("catselector");
+    cats.push({"name":"cat"+i, "counter":i}); //tak o
+  //  cat_counter.push(i);
+   // cat_names.push("cat"+i);
+    	var btn = document.createElement("option");
+		btn.value = i;
+		var t = document.createTextNode("cat"+i);
+		btn.appendChild(t);
+		opcje.appendChild(btn);    
+ }
+ 
+  var opcje = document.getElementById("catselector");
+  $('#my-elem0').click(function(e) {
+    console.log(controller.selected);
+    cats[controller.selected].counter++;
+    //console.log($(('#'+counterid)));
+    $('#cat0counter').html(cats[controller.selected].counter);
+});
+ 
+ },
+ 
+ changeCat:  function (element){
+ 
+   var x= element.value;
+   controller.selected = x;
+    console.log("You selected: " + x);
+    var elem = document.getElementById("my-elem0");
+   // elem.setAttribute("src", x);
+     elem.setAttribute("alt", controller.selected);
+     $('#cat0counter').html(cats[controller.selected].counter);
+     
+     
+     
+ }};
+ 
+controller.start(4);
+ 
+ 
+ 
+
+ var cat1counter=0;
+ addlistenertocat("my-elem1", "cat1counter",cat1counter, "dwa");
+ function addlistenertocat(cat_id, counterid, zmienna, napis){
+    var elem = document.getElementById(cat_id);
+    $('#'+cat_id).click(function(e) {
+    console.log(zmienna);
+    zmienna++;
+    console.log($(('#'+counterid)));
+    $('#'+counterid).html(zmienna);
+    console.log(addlistenertocat);
+  //the element has been clicked... do stuff here
+  //  console.log(napis);
+});
+ elem.addEventListener('click', function(){
+  //the element has been clicked... do stuff here
+  console.log(napis);
+}, false);
+
+ }
+ 
+ 
+ 
+
+
+// clear the screen for testing
+//document.body.innerHTML = '';
+
+var nums = [1,2,3];
+
+// Let's loop over the numbers in our array
+for (var i = 0; i < nums.length; i++) {
+
+    // This is the number we're on...
+    var num = nums[i];
+
+    // We're creating a DOM element for the number
+    var elem = document.createElement('div');
+    elem.textContent = num;
+
+    // ... and when we click, alert the value of `num`
+    elem.addEventListener('click', (function(numCopy) {
+        return function() {
+            alert(numCopy);
+        };
+    })(num));
+
+    document.body.appendChild(elem);
+};
+
+ </script>
+</body>
+</html>

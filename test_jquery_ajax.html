@@ -1,0 +1,40 @@
+<html>
+<head>
+  <title>kalkulator</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+<h1>prawy klawisz ma stopImmediatePropagation i preventDefault</h1>
+ 		<div id="wynik">mouseenter</div>
+
+ 
+ <script>
+
+
+ $(document).click(function(loc) {
+  console.log("lewym");
+  downloadCampaignListjQuery(handleResponse);
+   
+});
+
+function downloadCampaignListjQuery(callback) {//nie uzywamy ale tak to sie robi w jquery
+	// jquery object.
+	$.ajax({
+		url : 'http://localhost:8080/banner_generator/rest/campaigns',
+		headers : {
+			"Accept" : "application/json"
+		},
+		dataType: 'jsonp' //cross domain query
+	}).done(callback);
+}
+function handleResponse(data) {
+	console.log('the ajax request has finished!');
+	console.log(data);
+}
+
+
+ 
+ </script>
+</body>
+</html>

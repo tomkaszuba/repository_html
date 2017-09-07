@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<style>
+.pic{
+	width:50px;
+	height:50px;
+}
+.picbig{
+	position: absolute;
+	width:0px;
+//	-webkit-transition:width 0.3s linear 0s;
+//	transition:width 0.3s linear 0s;
+	z-index:10;
+}
+.pic:hover + .picbig{
+	width:200px;
+}
+</style>
+</head>
+<body>
+<img class="pic" src="download.jpg" alt="Adam">
+<img class="picbig" src="download.jpg" alt="Adam">
+
+<img class="pic" src="14369889_1170444493028715_2305525296116360739_n.jpg" alt="heart">
+<img class="picbig" src="14369889_1170444493028715_2305525296116360739_n.jpg" alt="heart">
+
+<img class="pic" src="pcs0jto.jpg" alt="hardhat">
+<img class="picbig" src="pcs0jto.jpg" alt="hardhat">
+</body>
+</html>

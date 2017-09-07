@@ -1,0 +1,92 @@
+<html>
+<head>
+  <title>scopes</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+ 
+ 
+ <script>
+
+var gold = {a:1};
+var pykk = gold;//extend({},gold);
+gold.a=3;
+console.log("extend test:"+pykk.a);
+pykk.x=0;
+console.log("dotylu:"+gold.x);
+
+
+var dupa = Object.create(gold);
+gold.a=4;
+console.log("create:" + dupa.a);
+dupa.b = 5;
+console.log("dotylu:"+gold.b);
+gold.c = 1;
+console.log("doprzodu:"+dupa.c);
+
+console.log(dupa.constructor);
+var carDecorator = function(obj, loc){
+obj.loc = loc;
+obj.move = function(){
+        obj.loc++;
+    };
+    return obj;
+
+};
+var amy0 = carDecorator({},2);
+amy0.move();
+console.log(amy0);
+//functional class patern
+var Car = function(loc){
+    var obj = {loc:loc};
+    obj.move = function(){
+        obj.loc++;
+    };
+   // extend(obj,methods);
+    return obj;
+};
+var methods = {
+    move1: function(){
+    this.loc++},
+    on:function(){},
+    off:function(){}
+};
+var amy = Car(1);
+amy.move();
+console.log(amy);
+
+
+
+function Bazowa() {
+    this.dupa = 9;
+    this.metodaA = function() {
+      console.log("Bazowa::A()");
+    }
+    this.metodaB = function() {
+      console.log("Bazowa::B()");
+    }
+  }
+
+  function Pochodna() {
+    // metodaB nadpisuje odpowiednią metodę z klasy Bazowa:
+    this.metodaB = function () {
+      console.log("Pochodna::B()");
+    }
+  }
+  Pochodna.prototype = new Bazowa();//ustawienie prototypu na nowa klase
+
+  x = new Bazowa();
+  y = new Pochodna();
+
+  x.metodaA(); // wyświetla: "Bazowa::A()"
+  y.metodaA(); // wyświetla: "Bazowa::A()"
+  x.metodaB(); // wyświetla: "Bazowa::B()"
+  y.metodaB(); // wyświetla: "Pochodna::B()"
+
+console.log(x);
+console.log(y);
+
+ </script>
+</body>
+</html>

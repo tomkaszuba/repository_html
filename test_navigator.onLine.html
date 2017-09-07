@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<!--
+Copyright 2011 Google Inc.
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+     http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+
+Author: Eric Bidelman (ericbidelman@chromium.org)
+-->
+<html>
+<head>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="chrome=1" />
+<title>navigator.onLine test</title>
+<style>
+.connected{background-color:green}
+.disconnected{background-color:red}
+</style>
+</head>
+<body>
+<div id="connection">Connecting...<div></div></div>
+<p>Toggle your wifi on/off while viewing this page.</p>
+<pre id="log"></pre>
+<script>
+function Logger(id) {
+  this.el = document.getElementById('log');
+}
+Logger.prototype.log = function(msg) {
+  var fragment = document.createDocumentFragment();
+  fragment.appendChild(document.createTextNode(msg));
+  fragment.appendChild(document.createElement('br'));
+  this.el.appendChild(fragment);
+};
+
+Logger.prototype.clear = function() {
+  this.el.textContent = '';
+};
+
+var logger = new Logger('log');
+
+function updateConnectionStatus(msg, connected) {
+  var el = document.querySelector('#connection');
+  if (connected) {
+    if (el.classList) {
+      el.classList.add('connected');
+      el.classList.remove('disconnected');
+    } else {
+      el.addClass('connected');
+      el.removeClass('disconnected');
+    }
+  } else {
+    if (el.classList) {
+      el.classList.remove('connected');
+      el.classList.add('disconnected');
+    } else {
+      el.removeClass('connected');
+      el.addClass('disconnected');
+    }
+  }
+  el.innerHTML = msg + '<div></div>';
+}
+
+window.addEventListener('load', function(e) {
+  if (navigator.onLine) {
+    updateConnectionStatus('Online', true);
+  } else {
+    updateConnectionStatus('Offline', false);
+  }
+}, false);
+
+window.addEventListener('online', function(e) {
+  logger.log("And we're back :)");
+  updateConnectionStatus('Online', true);
+  // Get updates from server.
+}, false);
+
+window.addEventListener('offline', function(e) {
+  logger.log("Connection is flaky.");
+  updateConnectionStatus('Offline', false);
+  // Use offine mode.
+}, false);
+//window.addEventListener('offline', function(e) { console.log('offline'); });
+//window.addEventListener('online', function(e) { console.log('online'); });
+</script>
+</body>
+</html>

@@ -1,0 +1,49 @@
+<html>
+<head>
+  <title>scopes</title>
+   <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
+</head>
+
+<body>
+ 
+ 
+ <script>
+sagas=[];
+var count1 = 0;
+var count2 = 0;
+var hero = "hero";
+var newSaga = function(){
+    var foil = "cow"+(count1++);
+    sagas.push(function(){
+        var deed = "eyes"+(count2++);
+        console.log(hero+deed+foil);
+    });
+    
+};
+newSaga();
+newSaga();
+newSaga();
+console.log(sagas);
+sagas[0]();
+sagas[2]();
+
+hero="hero1";
+sagas[0]();
+
+var fn = function(a,b){
+console.log(this);
+
+}
+fn(1,2)
+fn.call(hero, 1,2);
+setTimeout(fn, 1000);
+var test = {};
+test.method = fn;
+setTimeout(test.method, 1000);
+setTimeout(function(){test.method(1,2)},1000);
+new test.method(2,4);
+
+
+ </script>
+</body>
+</html>

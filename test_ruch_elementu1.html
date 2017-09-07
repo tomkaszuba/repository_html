@@ -1,0 +1,56 @@
+﻿<html>
+  <head>
+   <meta charset="UTF-8">
+    <title></title>
+    <meta content="">
+    <style></style>
+  </head>
+  <body onclick="utworz()">
+
+<img 
+id="obr1"
+src="http://www.superszkola.pl/wp-content/uploads/2013/08/sto.png" width="100"
+style="position:fixed; top: 100px; left:-10px"
+onclick="ruszaj()"
+ />
+
+
+<script>
+var nalewo=0;
+
+
+function ruszaj(element){
+	nalewo=nalewo+10;
+
+var h = window.innerHeight;
+var w = window.innerWidth;
+
+	if(nalewo > w)
+		nalewo = -100
+
+	var element = document.getElementById("obr1");
+	element.style.left=nalewo+"px"
+}
+
+setInterval(ruszaj, 100);
+
+
+function utworz(){
+  
+    var elem = document.createElement( 'img' );
+    document.body.appendChild(elem);
+    elem.src="http://www.superszkola.pl/wp-content/uploads/2013/08/superszkola2.png";
+    elem.width="150";
+    var x = event.clientX;     // Get the horizontal coordinate  
+    var y = event.clientY;     // Get the vertical coordinate
+    elem.style="position:fixed; top: "+y+"px; left:"+x+"px"
+//http://www.w3schools.com/jsref/event_clientx.asp
+}
+
+
+
+</script>
+
+
+  </body>
+</html>
