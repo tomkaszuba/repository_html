@@ -1,6 +1,6 @@
 <html>
 <head>
-  <title>kalkulator</title>
+  <title>dijkstry</title>
    <script type="text/javascript" src="./framework/js/jquery-3.2.1.min.js"></script>
 </head>
 
@@ -47,19 +47,21 @@ var graph2 = {
 };
 
 var graph1 = {
-	vertex: ["A","B","C","D","E","F"],
+	vertex: ["A","B","C","D","E","F", "G", "H"],
 	edge: [
 	/* vertex1, vertex2, weight */
-		["A", "C", 13],
-		["A", "E", 16],
-		["A", "F", 8],
-		["B", "D", 6],
-		["B", "F", 10],
-		["C", "D", 14],
-		["C", "F", 11],
-		["D", "E", 5],
-		["D", "F", 17],
-		["E", "F", 7]
+["A", "B", 2],
+["A", "C", 5],
+["A", "E", 3],
+["A", "F", 5],
+["A", "G", 2],
+["B", "D", 1],
+["C", "D", 1],
+["C", "E", 1],
+["D", "F", 2],
+["D", "H", 1],
+["E", "H", 2],
+["F", "G", 1]
 	]
 };
 
@@ -80,6 +82,18 @@ var wynik_koszt = {};
 var wynik_poprzednik = {};
 //var wynik_poprzednik1 = [];
 var wynik_gotowe = {};
+console.log(graph2["edge"]);
+console.log(graph2.edge);
+
+for(var i = 0; i<graph1.vertex.length; i++){
+    console.log(graph1.vertex[i]);
+    wynik_koszt[i]=NaN;
+    wynik_gotowe[i]=NaN;
+    wynik_poprzednik[i] = null;
+}
+console.log(wynik_koszt);
+console.log(wynik_poprzednik);
+
 
 function licz(formularz){
 
