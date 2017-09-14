@@ -1,0 +1,18 @@
+{
+  "name": "find_and_replace",
+  "description": "find and replace",
+  "version": "1.1",
+  "permissions": [
+    "activeTab",
+    "https://users.pja.edu.pl/*"
+  ],
+  "browser_action": {
+    "default_title": "infotip",
+    "default_popup": "popup.html"
+  },
+  "manifest_version": 2,
+  "web_accessible_resources": [
+  	"config/res1.json",
+  	"config/res2.json"
+  ]
+}

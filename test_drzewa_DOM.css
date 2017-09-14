@@ -1,0 +1,49 @@
+  .wezel{
+       margin-left : 50px;
+        
+    }
+    .left{
+    color: red;
+    }
+    .right{
+   color: green;
+    }
+    
+    ul.tree, ul.tree ul {
+    list-style: none;
+     margin: 0;
+     padding: 0;
+   } 
+   ul.tree ul {
+     margin-left: 15px;
+   }
+    ul.tree li:nth-last-child(2) {
+    
+   border-left:1px solid rgb(0,255,0); /*kreska do drugiego poddrzewa pionowa*/
+   }
+ 
+   ul.tree li {
+     margin: 0;
+     padding: 0 7px;
+     line-height: 25px;
+     font-weight: bold;
+   }
+   ul.tree li:last-child {
+       border-left:none;
+   }
+   ul.tree li:before {
+      position:relative;
+      top:-0.3em;
+      height:1em;
+      width:12px;
+      color:white;
+      
+     
+      content:"";
+      display:inline-block;
+      left:-7px;
+       border-bottom:1px solid rgb(255,0,0);  /*kreska pozioma*/
+   }
+   ul.tree li:last-child:before {
+      border-left:1px solid rgb(0,0,255); /*kreska pionowa z ostatniego dziecka*/
+   }

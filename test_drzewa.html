@@ -1,0 +1,151 @@
+<html>
+<head>
+  <title>drzewo BST DOM</title>
+   </head>
+
+<body>
+
+ <script>
+ 
+ 
+ var tree = [];
+ tree.push({"wartosc":5, "l":null,"r":null});
+ tree.push({"wartosc":2, "l":null,"r":null});
+ tree.push({"wartosc":12, "l":null,"r":null});
+ var a = {"wartosc":-4, "l":null,"r":null};
+  var b = {"wartosc":3, "l":null,"r":null};
+ 
+ function dodajNaLewo(ojciec, syn){
+    if(ojciec.l == null){
+        ojciec.l = syn;
+        return true;
+    }else{
+        return false;
+    }
+ }
+  function dodajNaPrawo(ojciec, syn){
+    if(ojciec.r == null){
+        ojciec.r = syn;
+        return true;
+    }else{
+        return false;
+    }
+ }
+ 
+ 
+
+ 
+ dodajNaLewo(tree[0], tree[1]);
+  dodajNaLewo(tree[1], a);
+   dodajNaPrawo(tree[1],b);
+ tree[0].r=tree[2];
+ 
+ console.log(tree);
+ console.log(tree[1]);
+ tree[0].l.wartosc = 9;
+ 
+ console.log(tree[0]);
+ console.log(tree[1]);
+ tree[1].wartosc = 2;
+ 
+ console.log(tree[0]);
+ console.log(tree[1]);
+ 
+ function preorder(obiekt, funkcja){
+    
+    funkcja(obiekt.wartosc);
+ 
+    if(obiekt.l !=null)
+        preorder(obiekt.l, funkcja);
+    
+    if(obiekt.r !=null)
+        preorder(obiekt.r, funkcja);
+ 
+ }
+ 
+ 
+ 
+  function inorder(obiekt, funkcja){
+    if(obiekt.l !=null)
+        inorder(obiekt.l, funkcja);
+    funkcja(obiekt.wartosc);
+    if(obiekt.r !=null)
+        inorder(obiekt.r, funkcja);
+ 
+ }
+ 
+   function postorder(obiekt, funkcja){
+    if(obiekt.l !=null)
+        postorder(obiekt.l, funkcja);
+    
+    if(obiekt.r !=null)
+        postorder(obiekt.r, funkcja);
+     funkcja(obiekt.wartosc);
+ }
+ 
+  preorder(tree[0], console.log);
+  console.log("--------------------------");
+  inorder(tree[0], console.log);
+  console.log("--------------------------");
+  postorder(tree[0], console.log);
+ 
+ console.log("--------------------------");
+
+ var root = null;
+  function doDrzewaBST(wezel){
+  if(root == null){
+    //root
+    console.log("tworze ojca");
+    root = wezel;
+  }
+  else{
+    console.log("dodaje "+wezel.wartosc +" do ojca: "+root.wartosc);
+    dodajBST(root, wezel);
+  }
+  }
+ function dodajBST(ojciec, syn){
+    if(ojciec.wartosc == syn.wartosc){
+        console.log("to samo");
+        return false;
+    }
+    if(ojciec.wartosc > syn.wartosc){
+        console.log("na lewo");
+        if(ojciec.l == null){
+            ojciec.l = syn;
+            return true;
+        }else{
+          return  dodajBST(ojciec.l, syn);
+        }
+    }
+     if(ojciec.wartosc < syn.wartosc){
+      console.log("na prawo");
+       
+        if(ojciec.r == null){
+            ojciec.r = syn;
+            return true;
+        }else{
+          return  dodajBST(ojciec.r, syn);
+        }
+    }
+ }
+
+
+ function tworzWezel(wartosc){
+    return {"wartosc":wartosc, "l":null,"r":null}
+ }
+ 
+ var tab = [ 4,1,6,3,-2,6,18,7];
+ for(var i = 0; i<tab.length; i++){
+   var tmp = tworzWezel(tab[i]);
+    console.log(tmp)
+    doDrzewaBST(tmp);
+ }
+ 
+ inorder(root, console.log);
+ console.log("===============================");
+ 
+ 
+ 
+ </script>
+</body>
+</html>

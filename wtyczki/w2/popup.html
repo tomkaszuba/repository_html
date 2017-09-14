@@ -1,0 +1,46 @@
+<!doctype html>
+<html>
+<head>
+	<title>Content guard</title>
+	<!-- ładujemy tutaj plik popuj.js obługujący nasz formularz oraz plik ze stylami-->
+	<script src="popup.js"></script>
+	<link href="css/bootstrap.min.css" rel="stylesheet">
+
+	
+</head>
+<body>
+	<div class="container" style="width: 300px">
+		<div class="row">
+			<div class="col-md-12 center-block text-center">
+				<h3>Bootstrap v3.3.7 + glyphicon </h3>
+				<div id="laduj">DODAJ SLOWNIKI Z NETU DO LISTY <i class="glyphicon glyphicon-search"></i></div>
+				<div class="form-group">
+					<select class="form-control" id="dictionarySelect">
+						<option value="RESOURCE1">res1</option>
+						<!-- selected=selected oznacza domyślnie wybraną wartość - możesz zamienić i przekleić do tej drugiej opcji-->
+						<option value="RESOURCE1" selected="selected">res2</option>
+					</select>
+				</div>
+			</div>
+		</div>
+		<div class="col-md-12 center-block text-center">
+			<div class="form-group">
+			<!--tutaj definujemy select do sposobu procesowania - czy podkreslamy czy zamazujemy -->
+				Select word processing
+				<select class="form-control" id="wordProcessingSelect">
+					<option value="UNDERLINE">Underline</option>
+					<option value="BLURE" selected="selected">Blure</option>
+				</select>
+			</div>
+		</div>	
+		<div class="row">
+			<div class="col-md-12">
+				<button type="button" class="center-block btn btn-success" id="processButton">	<i class="glyphicon glyphicon-star"></i> Start!</button>
+			</div>
+		
+			
+		
+		</div>
+	</div>
+</body>
+</html>

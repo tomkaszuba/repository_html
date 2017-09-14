@@ -1,0 +1,108 @@
+<html>
+<head>
+  <title>drzewo BST DOM</title>
+   <link rel="stylesheet" href="./test_drzewa_DOM.css"/>
+   </head>
+
+<body>
+
+ <script>
+ 
+ 
+ var tab = [ 4,1,6,3,-2,6,18,7];
+
+
+  function doDrzewaBST_DOM(wezel){
+  if(root2 == null){
+    //root
+    console.log("tworze ojca");
+    root2 = wezel;
+    var elem1 = document.createElement( 'ul' );
+    elem1.classList.add("tree");
+    elem1.appendChild(root2);
+    document.body.appendChild(elem1);
+  }
+  else{
+    console.log("dodaje "+wezel.id +" do ojca: "+root2.id);
+    dodajBST_DOM(root2, wezel);
+  }
+  }
+ function dodajBST_DOM(ojciec, syn){
+    if(ojciec.id == syn.id){
+        console.log("to samo");
+        return false;
+    }
+    if(new Number(ojciec.id) > new Number(syn.id)){
+        console.log("na lewo");
+        if(ojciec.getAttribute("l") == "null"){
+    console.log("tutaj");
+    
+        console.log("syn.id");
+        ojciec.setAttribute("l", syn.id);
+        syn.classList.add("left");
+        
+        var elem1 = ojciec.firstElementChild;
+            if(elem1 == null)
+                elem1 =document.createElement( 'ul' );
+        elem1.appendChild(syn);
+        ojciec.appendChild(elem1);
+        return true;
+    }else{
+         var elementsyn = document.getElementById(ojciec.getAttribute("l"));
+         console.log(elementsyn);
+            return  dodajBST_DOM(elementsyn, syn);
+        }
+    }
+     if(new Number(ojciec.id) < new Number(syn.id)){
+      console.log("na prawo");
+       if(ojciec.getAttribute("r") == "null"){
+    console.log("tutaj");
+    
+    console.log("syn.id");
+        ojciec.setAttribute("r", syn.id);
+         syn.classList.add("right");
+           var elem1 = ojciec.firstElementChild;
+            if(elem1 == null)
+                elem1 = document.createElement( 'ul' );
+                ojciec.appendChild(elem1);
+        
+         if(ojciec.getAttribute("l") == "null")
+            elem1.appendChild(syn);
+        else{
+             var elementsyn = document.getElementById(ojciec.getAttribute("l"));
+             elem1.insertBefore(syn,elementsyn);
+        }
+        
+        return true;
+    }else{
+       var elementsyn = document.getElementById(ojciec.getAttribute("r"));
+         console.log(elementsyn);
+         return  dodajBST_DOM(elementsyn, syn);
+        }
+    }
+ }
+
+ function tworzWezel_DOM(wartosc){
+    var elem = document.createElement( 'li' );
+    elem.innerHTML = wartosc;
+    
+    elem.setAttribute("id", wartosc);
+    elem.setAttribute("class", "wezel");
+    elem.setAttribute("l", "null");
+    elem.setAttribute("r", "null");
+    //{"wartosc":wartosc, "l":null,"r":null}
+    return elem;
+ }
+ 
+  
+ var root2 = null; 
+ for(var i = 0; i<tab.length; i++){
+   var tmp = tworzWezel_DOM(tab[i]);
+   doDrzewaBST_DOM(tmp);
+ }
+ 
+
+ 
+ </script>
+</body>
+</html>
