@@ -97,6 +97,7 @@
     //root
     console.log("tworze ojca");
     root = wezel;
+    root.parent = null;
   }
   else{
     console.log("dodaje "+wezel.wartosc +" do ojca: "+root.wartosc);
@@ -112,6 +113,7 @@
         console.log("na lewo");
         if(ojciec.l == null){
             ojciec.l = syn;
+            syn.parent=ojciec;
             return true;
         }else{
           return  dodajBST(ojciec.l, syn);
@@ -122,6 +124,7 @@
        
         if(ojciec.r == null){
             ojciec.r = syn;
+            syn.parent=ojciec;
             return true;
         }else{
           return  dodajBST(ojciec.r, syn);
@@ -144,8 +147,99 @@
  inorder(root, console.log);
  console.log("===============================");
  
+ function getWezel(wezel, wartosc){
+ console.log("jestem tu:"+wezel.wartosc);
+    if(wezel.wartosc == wartosc)
+        return wezel;
+    else if(wezel.r !=null && wartosc > wezel.wartosc){
+        return getWezel(wezel.r, wartosc);
+    }
+    else if(wezel.l !=null && wartosc < wezel.wartosc){
+        return getWezel(wezel.l, wartosc);
+    }
+ }
  
+ var a = getWezel (root, 18);
+ console.log(a);
  
+ function getPath(wezel,wartosc, tablica){
+ tablica.push(wezel.wartosc);
+     if(wezel.wartosc == wartosc){
+      
+    return tablica;
+    }
+    else if(wezel.r !=null && wartosc > wezel.wartosc){
+    
+        return getPath(wezel.r, wartosc,tablica);
+    }
+    else if(wezel.l !=null && wartosc < wezel.wartosc){
+        return getPath(wezel.l, wartosc,tablica);
+    }
+ }
+ var tab = [];
+ tab = getPath(root, 18, tab);
+ console.log(tab);
+  console.log("===============================");
+ function getDist(wart1, wart2){
+    var tab1 = getPath(root, wart1, []);
+    var tab2 = getPath(root, wart2, []);
+    console.log(tab1);
+    console.log(tab2);
+    while(tab1.length>0 && tab2.length > 0 && tab1[0]==tab2[0]){
+        var przodek = tab1.shift();
+        console.log(przodek);
+         przodek = tab2.shift();
+        console.log(przodek);
+    }
+    
+    console.log("===============================");
+    console.log(tab1);
+    console.log(tab2);
+ }
+ getDist(18, 18);
+   
+    console.log("===============================");
+
+function getDistFromLeftSubtreeOrRoot(wezel, wartosc, tablica){
+    
+    console.log("ogarniam:"+wezel.wartosc);
+    if(wartosc == wezel.wartosc){
+    tablica.push(wezel.wartosc);
+        return tablica;
+    }
+
+    if(wezel.parent!=null && wezel.parent.wartosc<=wartosc && wezel.parent.wartosc!=tablica[tablica.length-1] && (root.wartosc>wezel.wartosc||wezel.wartosc<wezel.parent.wartosc)){ console.log("jedzie do gory jak ma parenta (do roota)");
+    console.log(tablica);
+    console.log(wezel.parent);
+    console.log(tablica[tablica.length-1] +" jest rowna "+ wezel.parent.wartosc);
+    tablica.push(wezel.wartosc);
+    return getDistFromLeftSubtreeOrRoot(wezel.parent, wartosc, tablica);
+    }else if(wezel.parent == null && wezel.wartosc<wartosc){ console.log("zchodze na prawe poddrzeewo");
+      tablica.push(wezel.wartosc);
+      return getDistFromLeftSubtreeOrRoot(wezel.r, wartosc, tablica); //tu nie powinno byc nula ale nie wiem :)
+    }else if(wezel.parent == null && wezel.wartosc<wartosc){ console.log("zchodze na lewe poddrzeewo");
+       tablica.push(wezel.wartosc);
+       return getDistFromLeftSubtreeOrRoot(wezel.l, wartosc, tablica); //tu nie powinno byc nula ale nie wiem :)
+    }else if(wezel.parent!=null && wezel.wartosc<wartosc){ console.log("ide w dol na prawo");
+      tablica.push(wezel.wartosc);
+      return getDistFromLeftSubtreeOrRoot(wezel.r, wartosc, tablica);
+    }else if(wezel.parent!=null && wezel.wartosc>wartosc){ console.log("ide w dol na lewo");
+      tablica.push(wezel.wartosc);
+      return getDistFromLeftSubtreeOrRoot(wezel.l, wartosc, tablica);
+    }
+ 
+ }
+ function getDist2(wart1, wart2){
+    if(wart1>wart2)
+        return getDist2(wart2, wart1);
+    var start = getWezel(root, wart1);
+    console.log(start);
+    console.log("===============================");
+    var tablica2  =  getDistFromLeftSubtreeOrRoot(start, wart2, [])
+    console.log("===============================");
+    console.log(tablica2);
+ }
+ getDist2(4,7);
  </script>
 </body>
 </html>

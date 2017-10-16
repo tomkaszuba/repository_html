@@ -1,0 +1,37 @@
+<html>
+<head>
+<title>TEST</title>
+</head>
+<body>
+<input id="formularz" value="" type="text" onclick="szyfruj(2)"/>
+
+<script>
+function szyfruj(klucz)
+{
+var napis = document.getElementById("formularz");
+var szyfrogram="";
+for (var i = 0; i < napis.value.length; i++)
+{
+//console.log(napis.charCodeAt(i));
+var wartosc = napis.value.charCodeAt(i)
+var szyfr = NaN;
+szyfr = ((wartosc%97 + klucz)%26) + 97;
+//if (122 - wartosc < klucz) szyfr = 97 + klucz - (122 - wartosc) - 1;
+//else szyfr = wartosc + klucz;
+
+console.log(szyfr);
+szyfrogram += String.fromCharCode(szyfr);
+console.log(szyfrogram);
+}
+napis.value = szyfrogram
+}
+
+
+
+
+
+
+
+</script>
+</body>
+</html>
