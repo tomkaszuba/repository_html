@@ -12,7 +12,7 @@ Zawartość
 -   Grid
 -   jasmine_testing
     testy
--   wtyczki - katalog z wtyczkami do chroma i ff
+-   wtyczki - katalog z wtyczkami do `chroma` i `ff`
 -   img 
 ### obrazki
 -   Framework - frameworki rozne
@@ -44,16 +44,16 @@ wtyczki
 | pliczek     | opis    | technologie |
 | --------|---------|-------|
 | cezar.html  | szyfrowanie   | js    |
-| clicker_cat.html | kliker | zdarzenia  ```javascript
-function fancyAlert(arg) {
-  if(arg) {
-    $.facebox({div:'#foo'})
-  }
-}
-```  |
+| clicker_cat.html | kliker | zdarzenia  |
+
 
 ```javascript
-var wartosc = napis.value.charCodeAt(i)
-var szyfr = NaN;
-szyfr = ((wartosc%97 + klucz)%26) + 97;
+    var wartosc = napis.value.charCodeAt(i)
+    var szyfr = NaN;
+    szyfr = ((wartosc%97 + klucz)%26) + 97;
+```
+```javascript
+ var wartosc = napis.value.charCodeAt(i)
+    var szyfr = NaN;
+ szyfr = ((wartosc%97 + klucz)%26) + 97;
 ```
