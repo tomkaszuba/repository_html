@@ -1,27 +1,30 @@
 # repository_html
-Wymagania niefunkcjonalne
+01.11.2017
+Pliki html do uzycia na korepetycjach i nie tylko
 -------------------------
 
--   Dostępność przez stronę http (serwis działa w intranecie,
-    bezpieczeństwo realizowane poprzez korporacyjny VPN)
--   Wymagane środowisko UNIX (biblioteki imagemagick i skrypty bash)
-    oraz serwer http Tomcat w wersji min 8.5 (lub kompatybilny)
--   Serwis korzysta z api Flyhacks w celu uzyskiwania informacji o
-    destynacji oraz tłumaczeń (za uzyskanie/tworzenie kluczy odpowiada
-    administrator serwisu flyhacks). Endpointy:
+Zawartość
+---
 
-    -   https://www.flyhacks.pl/autocomplete.php
-    -   <https://flyhacks.pl/api/langs/translateLang/>
--   Serwis pozwala na dodanie czcionek TrueType (pliki ttf wgrywane są
-    na serwer przez administratora)
+-   Grid
+-   ###jasmine_testing
+    testy
+-   wtyczki - katalog z wtyczkami do chroma i ff
+-   img ###obrazki
+-   Framework - frameworki rozne
+    - bootstrap [strona glowna]( http://getbootstrap.com/ "tytuł")
+    - flexbox https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+-   reszta plikow
 
  
 -
 
-Scenariusze
+Pliczki inne
 ===========
 
-Wygenerowanie testowe bannerów dla kampanii
+
+wtyczki
 -------------------------------------------
 
-Rys. 2 Diagram Sekwencji dla generowania testowego
+1. W1
+2. W2
