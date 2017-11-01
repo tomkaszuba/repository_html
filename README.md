@@ -3,21 +3,24 @@
 Pliki html do uzycia na korepetycjach i nie tylko
 -------------------------
 
+###Test
+
 Zawartość
 ---
 
 -   Grid
--   ###jasmine_testing
+-   jasmine_testing
     testy
 -   wtyczki - katalog z wtyczkami do chroma i ff
 -   img ###obrazki
 -   Framework - frameworki rozne
-    - bootstrap [strona glowna]( http://getbootstrap.com/ "tytuł")
-    - flexbox https://css-tricks.com/snippets/css/a-guide-to-flexbox/
+    - bootstrap [strona glowna]( http://getbootstrap.com/ "przejdź do strony bootstrapa")
+    - flexbox [stronka] https://css-tricks.com/snippets/css/a-guide-to-flexbox/
 -   reszta plikow
 
- 
--
+to jest tylko test
+składni
+ĘÓŻŁŹĆŃĄŁóCXXźŹŻ
 
 Pliczki inne
 ===========
@@ -28,3 +31,9 @@ wtyczki
 
 1. W1
 2. W2
+
+####obrazki
+
+![srcsetbig] (/img/srcset_big.png)
+![srcsetsmall] (/img/srcset_small.png)
+![srcsetxsmall] (/img/srcset_xsmall.png "nie wiem czym się różni")
