@@ -44,4 +44,16 @@ wtyczki
 | pliczek     | opis    | technologie |
 | --------|---------|-------|
 | cezar.html  | szyfrowanie   | js    |
-| clicker_cat.html | kliker | zdarzenia    |
+| clicker_cat.html | kliker | zdarzenia  ```javascript
+function fancyAlert(arg) {
+  if(arg) {
+    $.facebox({div:'#foo'})
+  }
+}
+```  |
+
+```javascript
+var wartosc = napis.value.charCodeAt(i)
+var szyfr = NaN;
+szyfr = ((wartosc%97 + klucz)%26) + 97;
+```
