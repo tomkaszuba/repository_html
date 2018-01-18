@@ -58,11 +58,3 @@ var szyfr = NaN;
 szyfr = ((wartosc%97 + klucz)%26) + 97;
 ```
 
-```java
-	if (f.isFile())
-		return new FileStreamingOutput(f);
-	else {
-		//System.out.println("ej nie ma pliku" + f.getAbsolutePath());
-		throw new NotFoundException();
-	}
-```
