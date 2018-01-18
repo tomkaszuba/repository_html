@@ -1,4 +1,4 @@
-#Banner Generator
+#Projects list
 
 Wersja dokumentu: 1.2, autor: Tomasz Kaszuba 2017
 
