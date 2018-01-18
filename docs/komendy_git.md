@@ -7,3 +7,4 @@ git checkout BR_01
 
 ssh-agent bash -c 'ssh-add /home/tomek/.ssh/id_rsa_cfe; git pull'
 ssh-agent bash -c 'ssh-add /home/tomek/.ssh/id_rsa_cfe; git branch -l'
+ssh-agent bash -c 'ssh-add /home/tomek/.ssh/id_rsa_cfe; git push origin BR_01'
